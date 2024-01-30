@@ -56,37 +56,31 @@ def get_data_from_sheet(document, sheet, file_name):
     with open(f'content/{file_name}', 'w') as file:
         file.write(json_el)
 
+    return json_el
+
 print(f"Script started at: {datetime.datetime.now()}")
 
-try:
-    
-    # Load credentials and authorize the Google Sheets API
-    # scope = ['https://spreadsheets.google.com/feeds']
-    # creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
-    # creds_dict = json.loads(creds_json_str)
-    # creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-    # client = gspread.authorize(creds)
+# Load credentials and authorize the Google Sheets API
+# scope = ['https://spreadsheets.google.com/feeds']
+# creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
+# creds_dict = json.loads(creds_json_str)
+# creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+# client = gspread.authorize(creds)
 
-    # Load credentials and authorize the Google Sheets API
-    scope = ['https://spreadsheets.google.com/feeds']
-    creds = ServiceAccountCredentials.from_json_keyfile_name('boldh-412810-18a2c29d988c.json', scope)
-    client = gspread.authorize(creds)
-    
-    # Open the Google Sheet using its ID
-    sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
-    document = client.open_by_key(sheet_id)
+# Load credentials and authorize the Google Sheets API
+scope = ['https://spreadsheets.google.com/feeds']
+creds = ServiceAccountCredentials.from_json_keyfile_name('boldh-412810-18a2c29d988c.json', scope)
+client = gspread.authorize(creds)
 
-    news = document.get_worksheet(0)
-    get_data_from_sheet(document, news, 'news.json')
-    
-    agenda = document.get_worksheet(1)
-    get_data_from_sheet(document, agenda, 'agenda.json')
-    
-    print("Google Sheet updated successfully!")
+# Open the Google Sheet using its ID
+sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
+document = client.open_by_key(sheet_id)
 
-except Exception as e:
-    # Print any error messages
-    print(f"Error: {e}")
+news = document.get_worksheet(0)
+news_json = get_data_from_sheet(document, news, 'news.json')
+
+agenda = document.get_worksheet(1)
+agenda_json = get_data_from_sheet(document, agenda, 'agenda.json')
 
 # Add this at the end of your script to print the end time
 print(f"Script finished at: {datetime.datetime.now()}")
