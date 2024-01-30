@@ -58,6 +58,8 @@ def get_data_from_sheet(document, sheet, file_name):
     # Convert list to JSON format
     json_el = json.dumps(output_list, indent=2)
 
+    print(json_el)
+
     with open(f'content/{file_name}', 'w') as file:
         file.write(json_el)
 
