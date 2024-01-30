@@ -12,30 +12,14 @@ client = gspread.authorize(creds)
 sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
 sheet = client.open_by_key(sheet_id).sheet1
 
-# Function to fetch news data from a hypothetical API
-def fetch_news():
-    api_url = "https://spreadsheets.google.com/feeds"  # Replace this with the actual API endpoint
+# Get all values from the sheet
+values = sheet.get_all_values()
 
-    try:
-        response = requests.get(api_url)
-        response.raise_for_status()  # Raise an HTTPError for bad responses
+# Assuming your sheet has a header row, extract column names
+headers = values[0]
 
-        news_data = response.json()  # Assuming the API returns JSON data
-
-        # Extract relevant information from the API response
-        formatted_news_data = []
-        for article in news_data['articles']:
-            formatted_article = {
-                "Post type": article.get('post_type', 'No post type'),
-                "Title": article.get('Title', 'No title')
-            }
-            formatted_news_data.append(formatted_article)
-
-        return formatted_news_data
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching news: {e}")
-        return None
+# Create a list of dictionaries representing each row
+news_data = [dict(zip(headers, row)) for row in values[1:]]
 
 # Call the fetch_news function to get the actual news data
 news_data = fetch_news()
