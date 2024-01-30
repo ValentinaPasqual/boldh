@@ -5,6 +5,7 @@ import requests
 import json
 import re
 import os
+import sys
 
 with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
     print(f'prova', file=fh)
