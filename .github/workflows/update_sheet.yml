@@ -1,41 +1,42 @@
-name: Update Google Sheet
+name: run main.py
 
 on:
   schedule:
-    - cron: '* * * * *'  # Run every day at midnight
-  push:
-    branches:
-      - main  # Adjust the branch name as needed
+    - cron: '* * * * *' # At 00:00 on Monday
+
 jobs:
-  update-sheet:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+      - name: setup python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: '3.10' # install the python version needed
 
-      - name: Install dependencies
+      - name: install python packages
         run: |
           python -m pip install --upgrade pip
           pip install --quiet gspread pandas oauth2client
 
-      - name: Update website from Google Sheet
-        run: 
-          echo "Running update_sheet.py..."
-          python update_sheet.py
+      - name: execute py script # run main.py
         env:
-          GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
-          API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
-  
-      - name: Commit and push changes
+        GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
+        API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
+        run: python update_sheet.py
+
+      - name: commit files
         run: |
-          git config --global user.name 'valentinapasqual'
-          git config --global user.email 'valentina.pasqual2@unibo.it'
-          git add .
-          git commit -m "Update JSON files from update_sheet.py"
-          git push
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.BOLDH_TOKEN }}
+          branch: main 
