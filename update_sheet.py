@@ -8,6 +8,8 @@ import os
 
 import datetime
 
+print('This is a tryyyyyy')
+
 # PROCESSES THE CONTENTS OF MULTIVALUE CELLS
 def agenda_json_builder(entries_list):
     for entry in entries_list:
