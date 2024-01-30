@@ -15,7 +15,7 @@ jobs:
         - id: googlesheet_actions
           uses: rjoydip/googlesheet-actions@0.1.1
           with:
-            sheet-id: ${{ secrets.1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk }}
+            sheet-id: ${{ 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk }}
         - id: echo
           uses: actions/github-script@v2
           with:
