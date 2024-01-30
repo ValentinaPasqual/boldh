@@ -6,8 +6,6 @@ import json
 import re
 import os
 
-import datetime
-
 with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
     print(f'prova', file=fh)
 
@@ -58,8 +56,6 @@ def get_data_from_sheet(document, sheet, file_name):
 
     return json_el
 
-print(f"Script started at: {datetime.datetime.now()}")
-
 # Load credentials and authorize the Google Sheets API
 # scope = ['https://spreadsheets.google.com/feeds']
 # creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
@@ -81,9 +77,6 @@ news_json = get_data_from_sheet(document, news, 'news.json')
 
 agenda = document.get_worksheet(1)
 agenda_json = get_data_from_sheet(document, agenda, 'agenda.json')
-
-# Add this at the end of your script to print the end time
-print(f"Script finished at: {datetime.datetime.now()}")
 
 # Clear existing data in the Google Sheet
 #sheet.clear()
