@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install --quiet gspread pandas oauth2client
 
-      - name: Update Google Sheet
+      - name: Update website from Google Sheet
         run: 
           echo "Running update_sheet.py..."
           python update_sheet.py
