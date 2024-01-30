@@ -8,7 +8,7 @@ import os
 import sys
 
 with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-    print(f'prova', file=fh)
+    print('prova', file=fh)
 
 # debug
 sys.stderr.write("Debug: This is a debug statement\n")
