@@ -64,11 +64,6 @@ creds_dict = json.loads(creds_json_str)
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
-# Load credentials and authorize the Google Sheets API
-# scope = ['https://spreadsheets.google.com/feeds']
-# creds = ServiceAccountCredentials.from_json_keyfile_name('boldh-412810-18a2c29d988c.json', scope)
-# client = gspread.authorize(creds)
-
 # Open the Google Sheet using its ID
 sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
 document = client.open_by_key(sheet_id)
