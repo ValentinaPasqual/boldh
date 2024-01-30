@@ -1,6 +1,7 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
+import requests
 
 # Load credentials and authorize the Google Sheets API
 scope = ['https://spreadsheets.google.com/feeds']
