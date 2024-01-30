@@ -28,12 +28,6 @@ jobs:
         run: 
           echo "Running update_sheet.py..."
           python update_sheet.py
-          script_exit_code=$?
-          if [ $script_exit_code -eq 0 ]; then
-            echo "update_sheet.py completed successfully."
-          else
-            echo "update_sheet.py failed with exit code $script_exit_code."
-          fi
         env:
           GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
           API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
