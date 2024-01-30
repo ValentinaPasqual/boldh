@@ -2,7 +2,7 @@ name: Hello Workflow
 
 on:
   schedule:
-    - cron: '17 17 * * *'  # This cron expression triggers the workflow every minute
+    - cron: '20 17 * * *'  # This cron expression triggers the workflow every minute
 
 jobs:
   print_hello:
