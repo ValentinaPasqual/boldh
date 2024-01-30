@@ -1,0 +1,27 @@
+# bare minimal
+name: googlesheet
+
+on:
+  schedule:
+    - cron: '* * * * *'  # Run every day at midnight
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+    fetch:
+      runs-on: ubuntu-latest
+      steps:
+        - id: googlesheet_actions
+          uses: rjoydip/googlesheet-actions@0.1.1
+          with:
+            sheet-id: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
+        - id: echo
+          uses: actions/github-script@v2
+          with:
+            github-token: ${{secrets.BOLDH_TOKEN}}
+            script: |
+                console.log(${{steps.googlesheet_actions.outputs.result}})
+        - name: test
+          run: |
+            cat $HOME/data.json
