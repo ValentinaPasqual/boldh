@@ -23,7 +23,8 @@ jobs:
           pip install --quiet gspread pandas oauth2client
 
       - name: Update Google Sheet
-        run: python update_sheet.py
+        run: 
+          python update_sheet.py
         env:
           GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
-          API_KEY: ${{ secrets.18a2c29d988c634d24344460e5455431d174de05 }}
+          API_KEY: ${{ secrets.GOOGLE_SHEETS_CREDS }}
