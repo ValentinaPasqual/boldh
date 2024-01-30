@@ -9,7 +9,6 @@ import os
 # Load credentials and authorize the Google Sheets API
 scope = ['https://spreadsheets.google.com/feeds']
 creds_dict = os.environ.get('GOOGLE_SHEETS_CREDS')
-print(creds_dict)
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
