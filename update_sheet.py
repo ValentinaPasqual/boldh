@@ -58,10 +58,15 @@ print(f"Script started at: {datetime.datetime.now()}")
 try:
     
     # Load credentials and authorize the Google Sheets API
+    # scope = ['https://spreadsheets.google.com/feeds']
+    # creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
+    # creds_dict = json.loads(creds_json_str)
+    # creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    # client = gspread.authorize(creds)
+
+    # Load credentials and authorize the Google Sheets API
     scope = ['https://spreadsheets.google.com/feeds']
-    creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
-    creds_dict = json.loads(creds_json_str)
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    creds = ServiceAccountCredentials.from_json_keyfile_name('boldh-412810-18a2c29d988c.json', scope)
     client = gspread.authorize(creds)
     
     # Open the Google Sheet using its ID
