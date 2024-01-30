@@ -8,7 +8,8 @@ import os
 
 import datetime
 
-print('This is a tryyyyyy')
+with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+    print(f'prova', file=fh)
 
 # PROCESSES THE CONTENTS OF MULTIVALUE CELLS
 def agenda_json_builder(entries_list):
