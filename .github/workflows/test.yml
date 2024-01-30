@@ -1,17 +1,13 @@
-name: Process Start
+name: Hello Workflow
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '*/1 * * * *'  # This cron expression triggers the workflow every minute
 
 jobs:
-  process-start:
+  print_hello:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Print "process start"
-        run: echo "process start"
+      - name: Print Hello
+        run: echo "hello!"
