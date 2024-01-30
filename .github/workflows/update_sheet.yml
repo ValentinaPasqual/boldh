@@ -3,7 +3,9 @@ name: Update Google Sheet
 on:
   schedule:
     - cron: '* * * * *'  # Run every day at midnight
-
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
 jobs:
   update-sheet:
     runs-on: ubuntu-latest
@@ -33,12 +35,15 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email "valentina.pasqual2@unibo.it"
+          git config --local user.name "valentinapasqual"
           git add content/*.json
           git commit -m "Update Google Sheets data [skip ci]"
   
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.8.0
-        with:
-          branch: ${{ github.ref }}
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'Your Name'
+          git config --global user.email 'your-email@example.com'
+          git add .
+          git commit -m "Update JSON files from update_sheet.py"
+          git push
