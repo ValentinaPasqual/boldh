@@ -30,3 +30,15 @@ jobs:
         env:
           GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
           API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add content/*.json
+          git commit -m "Update Google Sheets data [skip ci]"
+  
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          branch: ${{ github.ref }}
