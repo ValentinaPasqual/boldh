@@ -24,8 +24,8 @@ jobs:
 
       - name: execute py script # run main.py
         env:
-        GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
-        API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
+          GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
+          API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
         run: python update_sheet.py
 
       - name: commit files
