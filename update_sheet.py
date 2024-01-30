@@ -7,7 +7,8 @@ import re
 
 # Load credentials and authorize the Google Sheets API
 scope = ['https://spreadsheets.google.com/feeds']
-creds = ServiceAccountCredentials.from_json_keyfile_name('.github/workflows/boldh-412810-18a2c29d988c.json', scope)
+creds_dict = os.environ.get('GOOGLE_SHEETS_CREDS')
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 client = gspread.authorize(creds)
 
 # Open the Google Sheet using its ID
