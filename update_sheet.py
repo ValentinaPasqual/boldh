@@ -9,6 +9,9 @@ import os
 with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
     print(f'prova', file=fh)
 
+# debug
+sys.stderr.write("Debug: This is a debug statement\n")
+
 # PROCESSES THE CONTENTS OF MULTIVALUE CELLS
 def agenda_json_builder(entries_list):
     for entry in entries_list:
