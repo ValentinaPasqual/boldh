@@ -14,6 +14,7 @@ client = gspread.authorize(creds)
 sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
 document = client.open_by_key(sheet_id)
 
+# PROCESSES THE CONTENTS OF MULTIVALUE CELLS
 def agenda_json_builder(entries_list):
     for entry in entries_list:
 
@@ -31,7 +32,7 @@ def agenda_json_builder(entries_list):
 
     return entries_list
 
-
+# EXTRACT DATA FROM THE SPREADSHEET
 def get_data_from_sheet(document, sheet, file_name):
 
     # Get data from the chosen sheet
