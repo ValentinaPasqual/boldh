@@ -49,6 +49,8 @@ def get_data_from_sheet(document, sheet, file_name):
     if 'agenda' in file_name:
         output_list = agenda_json_builder(output_list)
 
+    output_list.reverse()
+
     # Convert list to JSON format
     json_el = json.dumps(output_list, indent=2)
     
