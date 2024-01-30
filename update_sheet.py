@@ -76,10 +76,10 @@ sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
 document = client.open_by_key(sheet_id)
 
 news = document.get_worksheet(0)
-news_json = get_data_from_sheet(document, news, 'news.json')
+news_json = get_data_from_sheet(document, news, 'news2.json')
 
 agenda = document.get_worksheet(1)
-agenda_json = get_data_from_sheet(document, agenda, 'agenda.json')
+agenda_json = get_data_from_sheet(document, agenda, 'agenda2.json')
 
 # Clear existing data in the Google Sheet
 #sheet.clear()
