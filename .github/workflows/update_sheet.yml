@@ -32,18 +32,11 @@ jobs:
         env:
           GOOGLE_SHEET_ID: 1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk
           API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
-
-      - name: Commit changes
-        run: |
-          git config --local user.email "valentina.pasqual2@unibo.it"
-          git config --local user.name "valentinapasqual"
-          git add content/*.json
-          git commit -m "Update Google Sheets data [skip ci]"
   
       - name: Commit and push changes
         run: |
-          git config --global user.name 'Your Name'
-          git config --global user.email 'your-email@example.com'
+          git config --global user.name 'valentinapasqual'
+          git config --global user.email 'valentina.pasqual2@unibo.it'
           git add .
           git commit -m "Update JSON files from update_sheet.py"
           git push
