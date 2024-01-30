@@ -4,11 +4,7 @@ import pandas as pd
 import requests
 import json
 import re
-import os
 import sys
-
-with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-    print('prova', file=fh)
 
 # debug
 sys.stderr.write("Debug: This is a debug statement\n")
