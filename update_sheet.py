@@ -6,16 +6,7 @@ import json
 import re
 import os
 
-# Load credentials and authorize the Google Sheets API
-scope = ['https://spreadsheets.google.com/feeds']
-creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
-creds_dict = json.loads(creds_json_str)
-creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-client = gspread.authorize(creds)
-
-# Open the Google Sheet using its ID
-sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
-document = client.open_by_key(sheet_id)
+import datetime
 
 # PROCESSES THE CONTENTS OF MULTIVALUE CELLS
 def agenda_json_builder(entries_list):
@@ -58,17 +49,39 @@ def get_data_from_sheet(document, sheet, file_name):
 
     # Convert list to JSON format
     json_el = json.dumps(output_list, indent=2)
-
-    print(json_el)
-
+    
     with open(f'content/{file_name}', 'w') as file:
         file.write(json_el)
 
-news = document.get_worksheet(0)
-get_data_from_sheet(document, news, 'news.json')
+print(f"Script started at: {datetime.datetime.now()}")
 
-agenda = document.get_worksheet(1)
-get_data_from_sheet(document, agenda, 'agenda.json')
+try:
+    
+    # Load credentials and authorize the Google Sheets API
+    scope = ['https://spreadsheets.google.com/feeds']
+    creds_json_str = os.environ.get('GOOGLE_SHEETS_CREDS')
+    creds_dict = json.loads(creds_json_str)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    client = gspread.authorize(creds)
+    
+    # Open the Google Sheet using its ID
+    sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
+    document = client.open_by_key(sheet_id)
+
+    news = document.get_worksheet(0)
+    get_data_from_sheet(document, news, 'news.json')
+    
+    agenda = document.get_worksheet(1)
+    get_data_from_sheet(document, agenda, 'agenda.json')
+    
+    print("Google Sheet updated successfully!")
+
+except Exception as e:
+    # Print any error messages
+    print(f"Error: {e}")
+
+# Add this at the end of your script to print the end time
+print(f"Script finished at: {datetime.datetime.now()}")
 
 # Clear existing data in the Google Sheet
 #sheet.clear()
