@@ -14,7 +14,7 @@ sheet = client.open_by_key(sheet_id).sheet1
 
 # Function to fetch news data from a hypothetical API
 def fetch_news():
-    api_url = "https://api.example.com/news"  # Replace this with the actual API endpoint
+    api_url = "https://spreadsheets.google.com/feeds"  # Replace this with the actual API endpoint
 
     try:
         response = requests.get(api_url)
