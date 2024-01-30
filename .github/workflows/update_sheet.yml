@@ -2,7 +2,7 @@ name: Update Google Sheet
 
 on:
   schedule:
-    - cron: '26 17 * * *'  # Run every day at midnight
+    - cron: '25 17 * * *'  # Run every day at midnight
 
 jobs:
   update-sheet:
