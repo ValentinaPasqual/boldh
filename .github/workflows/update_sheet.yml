@@ -1,4 +1,4 @@
-name: run main.py
+name: Update News and Agenda
 
 on:
   schedule:
