@@ -3,6 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import pandas as pd
 import requests
 import json
+import re
 
 # Load credentials and authorize the Google Sheets API
 scope = ['https://spreadsheets.google.com/feeds']
@@ -13,10 +14,22 @@ client = gspread.authorize(creds)
 sheet_id = '1WKRWIkQ5qqr5caCEl5yaeHHuzDv_yF0fGpQs9dvBTgk'
 document = client.open_by_key(sheet_id)
 
-def agenda_json_builder(json_element):
-    print(json_element)
+def agenda_json_builder(entries_list):
+    for entry in entries_list:
 
-    return json_element
+        urls = entry['urls']
+        pattern = r'^(.*?)\n(\[https://[^\n\]]+\])'
+        urls_matches = re.findall(pattern, urls, re.MULTILINE)
+        urls_result = [{'text':match[0].strip(), 'url':match[1].replace('[', '').replace(']', '')} for match in urls_matches]
+
+        downloads = entry['downloads']
+        downloads_matches = re.findall(pattern, downloads, re.MULTILINE)
+        downloads_result = [{'text':match[0].strip(), 'url':match[1].replace('[', '').replace(']', '')} for match in downloads_matches]
+
+        entry['urls'] = urls_result
+        entry['downloads'] = downloads_result
+
+    return entries_list
 
 
 def get_data_from_sheet(document, sheet, file_name):
@@ -36,11 +49,11 @@ def get_data_from_sheet(document, sheet, file_name):
     # Convert DataFrame to list of dictionaries
     output_list = df.to_dict(orient='records')
 
+    if 'agenda' in file_name:
+        output_list = agenda_json_builder(output_list)
+
     # Convert list to JSON format
     json_el = json.dumps(output_list, indent=2)
-
-    if 'agenda' in file_name:
-        json_el = agenda_json_builder(json_el)
 
     with open(f'content/{file_name}', 'w') as file:
         file.write(json_el)
