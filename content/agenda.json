@@ -1,5 +1,24 @@
 [
   {
+    "title": "Elena Giglia, \u201cOpen science: in dialogue with society\u201d",
+    "division": "DHDK",
+    "type": "Seminar",
+    "text": "<p>We shall explore the two-way connection among science and society - as <span class=\"keyword\">Open Science</span> is not just \"sharing\" at the end of the process, it's a <span class=\"keyword\">different way of creating knowledge</span> starting from the beginning, and possibly co-creating it. After discussing the potentiality of citizen science, we shall delve into the realm of science communication with a focus on science for policy, for a truly evidence-informed policy making.</p><p><span class=\"keyword\">Elena Giglia</span>, PhD, Masters' Degree in Librarianship and Masters' Degree in Public Institutions Management, is Head of the <span class=\"keyword\">Open Science Unit at the University of Turin</span>. She has been part of the European Open Science network for many years, attending national and international conferences, and writing and lecturing on Open Access and Open Science. She was a member (2019-2020) of the Committee on Open Science at the Ministry for University and Research (MUR). She actively collaborates with the ICDI - Italian Computer and Data Infrastructure Competence center on Open Science, EOSC and FAIR data and with several national and international projects. She represents OPERAS Research Infrastructure in the EOSC Association. She serves in several Scientific Committees and Advisory Boards.</p>",
+    "date": "08/05/2024",
+    "time": "from 12:30 to 14:30",
+    "place": "Via Zamboni 34, Bologna",
+    "place_extended": "Aula Affreschi, Via Zamboni 34, Bologna",
+    "subtitle": "Final seminar of the \"Open Science\" course, Digital Humanities and Digital Knowledge (DHDK)",
+    "urls": [
+      {
+        "text": "Event page",
+        "url": "https://ficlit.unibo.it/it/eventi/elena-giglia-open-science-in-dialogue-with-society"
+      }
+    ],
+    "downloads": [],
+    "IMAGE": "Event poster\n[https://ficlit.unibo.it/it/eventi/elena-giglia-open-science-in-dialogue-with-society/@@unibo.tiles.richtext/925a6fd9b58442b2a2e9dc8a80ba52ef/@@images/e44b6854-bdc1-4194-ab62-7fcf5e5c8a85.jpeg]\n"
+  },
+  {
     "title": "Datathon Wikidata",
     "division": "BolDH",
     "type": "Initiatives",
